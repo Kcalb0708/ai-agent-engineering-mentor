@@ -1,14 +1,38 @@
 # AI Agent 工程化每日导师
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](#license)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](#license--许可证)
 [![Skill](https://img.shields.io/badge/Skill-Codex%20%2F%20Claude%20Code-blue)](#安装)
-[![Language](https://img.shields.io/badge/Language-中文-red)](#适合谁)
+[![Language](https://img.shields.io/badge/Language-中文%20%7C%20English-red)](#english)
+
+**中文** | [English](#english)
 
 一个中文 AI Agent 工程学习 skill：把现代 Agent 学习路线压成每周大纲、每日 6 小时任务、可运行项目、Obsidian 双链笔记和求职项目表达。
 
 技能标识符：`ai-agent-engineering-mentor`
 
 对外技能名：`AI Agent 工程化每日导师`
+
+项目地址：[github.com/Kcalb0708/ai-agent-engineering-mentor](https://github.com/Kcalb0708/ai-agent-engineering-mentor)
+
+最新版本：[GitHub Releases](https://github.com/Kcalb0708/ai-agent-engineering-mentor/releases)
+
+## 目录
+
+- [为什么做这个 skill](#为什么做这个-skill)
+- [At a glance](#at-a-glance)
+- [适合谁](#适合谁)
+- [学习路线](#学习路线)
+- [安装](#安装)
+- [快速开始](#快速开始)
+- [每日输出结构](#每日输出结构)
+- [工作模式](#工作模式)
+- [可选来源链接](#可选来源链接)
+- [Repository layout](#repository-layout)
+- [关键设计](#关键设计)
+- [Sources and credits](#sources-and-credits)
+- [Contributing](#contributing)
+- [License / 许可证](#license--许可证)
+- [English](#english)
 
 ## 为什么做这个 skill
 
@@ -100,9 +124,18 @@ AI-Interview：基于 RAG 与 Agent 的智能模拟面试系统
 
 ## 安装
 
+这个 skill 是标准 `SKILL.md` 目录结构，适用于支持 Agent Skills / SKILL.md 的宿主。已覆盖的安装入口：
+
+| 宿主 | 推荐安装目录 | 说明 |
+| --- | --- | --- |
+| Codex | `~/.codex/skills/ai-agent-engineering-mentor` | 适合 OpenAI Codex / Codex CLI |
+| Claude Code | `~/.claude/skills/ai-agent-engineering-mentor` | 个人全局 skill；项目级可放 `.claude/skills/` |
+| cc-switch | `~/.cc-switch/skills/ai-agent-engineering-mentor` 或 `~/.agents/skills/ai-agent-engineering-mentor` | `~/.agents/skills` 更适合多工具共享 |
+| Hermes Agent | `~/.hermes/skills/ai-agent-engineering-mentor` | 适合 Hermes 本地 skill 目录 |
+
 ### Codex
 
-把本目录放到 Codex skills 目录，例如：
+推荐始终从主仓库安装，避免复制到旧版本：
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -115,7 +148,72 @@ git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.codex/
 使用 AI Agent 工程化每日导师，生成 Week 1 大纲
 ```
 
-### Claude Code / 其他兼容 skills 的 agent
+更新到最新版本：
+
+```bash
+git -C ~/.codex/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### Claude Code
+
+安装到个人全局 skills 目录：
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.claude/skills/ai-agent-engineering-mentor
+```
+
+项目级安装可以放到当前仓库：
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git .claude/skills/ai-agent-engineering-mentor
+```
+
+更新：
+
+```bash
+git -C ~/.claude/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### cc-switch
+
+安装到 cc-switch 默认 skills 目录：
+
+```bash
+mkdir -p ~/.cc-switch/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.cc-switch/skills/ai-agent-engineering-mentor
+```
+
+如果你希望多个 agent 工具共享 skill，也可以安装到社区共享目录：
+
+```bash
+mkdir -p ~/.agents/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.agents/skills/ai-agent-engineering-mentor
+```
+
+更新：
+
+```bash
+git -C ~/.cc-switch/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### Hermes Agent
+
+安装到 Hermes skills 目录：
+
+```bash
+mkdir -p ~/.hermes/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.hermes/skills/ai-agent-engineering-mentor
+```
+
+更新：
+
+```bash
+git -C ~/.hermes/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### 其他兼容 skills 的 agent
 
 把本目录复制到对应 agent 的 skills 目录，并确保目录名与 `SKILL.md` 中的 `name` 一致：
 
@@ -123,6 +221,19 @@ git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.codex/
 ai-agent-engineering-mentor/
 └── SKILL.md
 ```
+
+如果你是从 GitHub clone 安装的，进入 skill 目录后执行：
+
+```bash
+git pull --ff-only
+```
+
+参考文档：
+
+- [OpenAI Codex Skills](https://developers.openai.com/codex/skills)
+- [Claude Code Skills](https://code.claude.com/docs/en/skills)
+- [cc-switch Skills](https://github.com/farion1231/cc-switch/blob/main/docs/user-manual/en/3-extensions/3.3-skills.md)
+- [Hermes Agent Skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)
 
 ## 快速开始
 
@@ -252,7 +363,6 @@ ai-agent-engineering-mentor/
 
 Obsidian 双链使用稳定中文命名，避免每天创造同义词导致知识库分裂。
 
-
 ## Sources and credits
 
 主要学习路线参考：
@@ -290,6 +400,405 @@ Obsidian 双链使用稳定中文命名，避免每天创造同义词导致知�
 - 不把旧式 role-play multi-agent 作为主线。
 - 优先补齐项目闭环、测试、trace、eval 和安全边界。
 
-## License
+## English
+
+[中文](#ai-agent-工程化每日导师) | **English**
+
+# AI Agent Engineering Daily Mentor
+
+A Chinese-first AI Agent engineering skill that turns a modern Agent learning roadmap into weekly plans, daily 6-hour tasks, runnable projects, Obsidian-style linked notes, and job-ready project narratives.
+
+Skill identifier: `ai-agent-engineering-mentor`
+
+Display name: `AI Agent 工程化每日导师`
+
+Repository: [github.com/Kcalb0708/ai-agent-engineering-mentor](https://github.com/Kcalb0708/ai-agent-engineering-mentor)
+
+Latest version: [GitHub Releases](https://github.com/Kcalb0708/ai-agent-engineering-mentor/releases)
+
+## Table of contents
+
+- [Why this skill exists](#why-this-skill-exists)
+- [At a glance](#at-a-glance-1)
+- [Who it is for](#who-it-is-for)
+- [Learning roadmap](#learning-roadmap)
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Daily output shape](#daily-output-shape)
+- [Working modes](#working-modes)
+- [Optional source links](#optional-source-links)
+- [Repository layout](#repository-layout-1)
+- [Design principles](#design-principles)
+- [Sources and credits](#sources-and-credits-1)
+- [Contributing](#contributing-1)
+- [License](#license--许可证)
+
+## Why this skill exists
+
+Many AI Agent learning roadmaps become link collections. They contain plenty of resources, but they do not tell learners what to code today, what project to ship this week, or how to tell whether they are making real progress.
+
+This skill turns a roadmap into an execution loop:
+
+```text
+Weekly outline
+-> Daily 6-hour task
+-> Runnable code
+-> Self-check
+-> Learning feedback
+-> Adaptive next-day adjustment
+-> Project packaging and interview narrative
+```
+
+The roadmap is based on and credits [datawhalechina/Agent-Learning-Hub](https://github.com/datawhalechina/Agent-Learning-Hub). That project emphasizes building useful, reliable agents instead of collecting random links. This skill converts its Stage 0-8 roadmap into a Chinese-first daily learning workflow.
+
+## At a glance
+
+| Capability | What it does |
+| --- | --- |
+| Weekly outline | Generates Week 1-8 learning plans with Day 1-Day 7 breakdowns |
+| Daily teaching | Produces a fixed 5-module daily plan designed for a 6-hour study block |
+| Adaptive planning | Adjusts based on daily feedback: continue, slow down, extend, or reschedule |
+| Project ladder | Moves from `Calculator Agent` to `Production-style Agent Project` |
+| Obsidian links | Produces stable Chinese `[[...]]` links for concepts, modules, and interview notes |
+| Optional sources | Adds official docs, specs, papers, or project README links near relevant concepts |
+| Job packaging | Helps write project narratives, resume bullets, interview answers, and README improvements |
+
+## Who it is for
+
+- Chinese learners who want a structured path into modern AI Agent engineering.
+- Developers with some Python knowledge but limited Agent project experience.
+- Learners who want to understand Claude Code / Codex-style coding agents.
+- Students or internship candidates who want a demonstrable, evaluable Agent project.
+- Learners who want to connect daily study notes with an Obsidian knowledge base.
+
+Not a good fit if you:
+
+- Only want to collect links without writing code.
+- Only want prompt role-play and do not care about tools, permissions, trace, or eval.
+- Want to jump into complex multi-agent frameworks on day one.
+
+## Learning roadmap
+
+The roadmap references [Agent-Learning-Hub](https://github.com/datawhalechina/Agent-Learning-Hub) and rearranges it into an 8-week project ladder for Chinese learners.
+
+| Week | Theme | Main output |
+| --- | --- | --- |
+| Week 1 | Python MUP + minimal Agent Loop | `Calculator Agent` |
+| Week 2 | Tool Use + Web Research Agent | `Web Research Agent v1` |
+| Week 3 | RAG + Memory + Citation | `PDF QA Agent` or `Knowledge Research Agent` |
+| Week 4 | Coding Agent Harness study and rebuild | `Nano Coding Agent` |
+| Week 5 | Supervisor / Graph / Reviewer | `Multi-Agent Writer` or `Coding Review Agent` |
+| Week 6 | Skills + Protocols + Capability Packaging | `Reusable Skill Pack` |
+| Week 7 | Browser Agent + Computer-use Safety | `Browser Agent` |
+| Week 8 | Evaluation, Observability, Safety, Ship | `Production-style Agent Project` |
+
+Recommended final project:
+
+```text
+NanoAgent: an auditable Coding Agent Harness for local codebases
+```
+
+Core loop:
+
+```text
+User task
+-> Read project context
+-> Select tool
+-> Check permission
+-> Execute safe tool
+-> Record trace
+-> Update session
+-> Compact context if needed
+-> Return result or failure reason
+-> Validate with eval / smoke test
+```
+
+If your goal is an AI Agent application internship, you can also choose a business project:
+
+```text
+AI-Interview: a RAG + Agent powered mock interview system
+```
+
+It must include RAG citations, retrieval evaluation, agent trace, session, permission boundaries, tests, README, and failure records. It should not remain a simple RAG demo.
+
+## Installation
+
+This skill uses the standard `SKILL.md` directory layout and can be installed into hosts that support Agent Skills / SKILL.md.
+
+| Host | Recommended path | Notes |
+| --- | --- | --- |
+| Codex | `~/.codex/skills/ai-agent-engineering-mentor` | For OpenAI Codex / Codex CLI |
+| Claude Code | `~/.claude/skills/ai-agent-engineering-mentor` | Personal skill; project-level skills can live under `.claude/skills/` |
+| cc-switch | `~/.cc-switch/skills/ai-agent-engineering-mentor` or `~/.agents/skills/ai-agent-engineering-mentor` | `~/.agents/skills` is better for sharing across tools |
+| Hermes Agent | `~/.hermes/skills/ai-agent-engineering-mentor` | For Hermes local skills |
+
+### Codex
+
+Install from the canonical repository to avoid stale copies:
+
+```bash
+mkdir -p ~/.codex/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.codex/skills/ai-agent-engineering-mentor
+```
+
+Then trigger it in Codex:
+
+```text
+Use AI Agent 工程化每日导师 to generate a Week 1 outline.
+```
+
+Update to the latest version:
+
+```bash
+git -C ~/.codex/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### Claude Code
+
+Install as a personal global skill:
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.claude/skills/ai-agent-engineering-mentor
+```
+
+For a project-scoped skill, install it into the current repository:
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git .claude/skills/ai-agent-engineering-mentor
+```
+
+Update:
+
+```bash
+git -C ~/.claude/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### cc-switch
+
+Install into the default cc-switch skills directory:
+
+```bash
+mkdir -p ~/.cc-switch/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.cc-switch/skills/ai-agent-engineering-mentor
+```
+
+If you want multiple agent tools to share the same skill, install it into the shared community directory:
+
+```bash
+mkdir -p ~/.agents/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.agents/skills/ai-agent-engineering-mentor
+```
+
+Update:
+
+```bash
+git -C ~/.cc-switch/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### Hermes Agent
+
+Install into the Hermes skills directory:
+
+```bash
+mkdir -p ~/.hermes/skills
+git clone https://github.com/Kcalb0708/ai-agent-engineering-mentor.git ~/.hermes/skills/ai-agent-engineering-mentor
+```
+
+Update:
+
+```bash
+git -C ~/.hermes/skills/ai-agent-engineering-mentor pull --ff-only
+```
+
+### Other agents with compatible skills
+
+Copy this folder into the target agent's skills directory and make sure the folder name matches `name` in `SKILL.md`:
+
+```text
+ai-agent-engineering-mentor/
+└── SKILL.md
+```
+
+If you installed it with Git, enter the skill directory and run:
+
+```bash
+git pull --ff-only
+```
+
+References:
+
+- [OpenAI Codex Skills](https://developers.openai.com/codex/skills)
+- [Claude Code Skills](https://code.claude.com/docs/en/skills)
+- [cc-switch Skills](https://github.com/farion1231/cc-switch/blob/main/docs/user-manual/en/3-extensions/3.3-skills.md)
+- [Hermes Agent Skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)
+
+## Quick start
+
+Generate the first weekly outline:
+
+```text
+使用 AI Agent 工程化每日导师，生成 Week 1 大纲。
+我的基础：会一点 Python，但没系统做过 Agent 项目。
+目标：8 周内做出可投递的 AI Agent 项目。
+```
+
+Generate Day 1:
+
+```text
+使用 AI Agent 工程化每日导师，根据 Week 1 大纲生成 Day 1 学习内容。
+```
+
+Submit daily feedback:
+
+```text
+【Day 1 学习反馈】
+1. 今天实际学习时长：4 小时
+2. 完成了哪些代码/文件：app/config.py、app/messages.py、app/tools/calculator.py
+3. 哪个概念最清楚了：messages 结构
+4. 哪个概念还没懂：Tool Schema
+5. 卡住的 Bug / 报错全文：无
+6. 自我验收题完成情况：2/3
+7. 明天希望：正常推进
+```
+
+Generate Obsidian notes:
+
+```text
+使用 AI Agent 工程化每日导师，基于 Day 1 内容补全最重要的 3-5 个 Obsidian 知识点笔记。
+```
+
+## Daily output shape
+
+Daily content contains exactly 5 top-level modules:
+
+```markdown
+📌 今日核心死磕
+🎯 6小时精细化路线
+💻 今日代码实战
+🎯 每日自我验收题
+📥 明日同步接口
+```
+
+Code requirements:
+
+- Type hints.
+- Chinese comments.
+- Meaningful error handling.
+- No `pass`.
+- No non-runnable pseudocode.
+- Standard library and lightweight dependencies first; FastAPI, LangGraph, Playwright, and MCP SDK later when the roadmap reaches them.
+
+## Working modes
+
+This skill is organized around five common Agent Skill design patterns:
+
+| Mode | Pattern | Purpose |
+| --- | --- | --- |
+| Weekly outline | Generator + Inversion | Generate stable weekly plans and ask for missing goals when needed |
+| Daily teaching | Pipeline + Generator | Produce a strict 5-module daily task |
+| Feedback adjustment | Reviewer + Pipeline | Review feedback and project completeness before planning the next day |
+| Obsidian maintenance | Reviewer + Generator | Score links and generate 3-5 focused notes |
+| Roadmap digestion | Tool Wrapper + Pipeline + Reviewer | Read external roadmaps and convert them into executable learning rules |
+
+## Optional source links
+
+This skill has digested a set of modern Agent learning materials, but it does not lock users into a single explanation. When a key concept appears, it provides a few optional source links near that concept.
+
+Example:
+
+```markdown
+### [[Agent Loop]]: why it is not a normal workflow
+
+The key idea of an agent loop is not "let the model think more". It is a controllable loop across observation, tool selection, tool execution, and result interpretation.
+
+可选来源：[Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)、[OpenAI: A practical guide to building agents](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)
+```
+
+Rules:
+
+- No more than about 5 external links per daily output.
+- 1-2 links per concept, at most 3.
+- Prefer official docs, specifications, paper abstracts, and high-quality project READMEs.
+- Do not append links after the `📥 明日同步接口` template.
+
+## Repository layout
+
+```text
+ai-agent-engineering-mentor/
+├── SKILL.md
+├── README.md
+├── agents/
+│   └── openai.yaml
+└── references/
+    ├── skill-mode-patterns.md
+    ├── 8-week-spine.md
+    ├── weekly-outline-template.md
+    ├── day1-seed.md
+    ├── adaptation-policy.md
+    ├── final-project-blueprint.md
+    ├── internship-success-insights.md
+    ├── obsidian-linking-policy.md
+    ├── obsidian-note-maintenance-policy.md
+    └── source-link-policy.md
+```
+
+## Design principles
+
+### 1. The roadmap is not a link collection
+
+Every day must end in code, a project artifact, a self-check, and feedback. Links are optional paths for deeper understanding.
+
+### 2. Agent engineering first
+
+The core line focuses on tool schema, permission gate, session store, context compaction, trace, eval, and safety instead of old role-play multi-agent patterns.
+
+### 3. Outputs must be reviewable
+
+Weekly projects should gradually include README, tests, trace, eval, failure records, and interview narratives.
+
+### 4. Knowledge links must be stable
+
+Obsidian links use stable Chinese names to avoid splitting the same concept across many aliases.
+
+## Sources and credits
+
+Primary roadmap reference:
+
+- [datawhalechina/Agent-Learning-Hub](https://github.com/datawhalechina/Agent-Learning-Hub)
+
+Core source categories:
+
+- Agent design: Anthropic Building Effective Agents, OpenAI Practical Guide to Building Agents.
+- Tool calling: OpenAI Function Calling, Claude Tool Use, Gemini Function Calling.
+- Coding agents: Claude Code, OpenAI Codex, learn-claude-code, claw0.
+- Protocols: MCP, A2A, ACP.
+- Eval and safety: OpenAI Evals, LangSmith, AgentBench, SWE-bench, AI Harness Engineering.
+
+If you extend this project, prioritize:
+
+- Runnable project tasks.
+- Better daily self-check questions.
+- New trace/eval/safety practices.
+- Chinese explanations and failure reviews for learners.
+
+## Contributing
+
+Issues and PRs are welcome. Please include:
+
+- Which Week / Day you want to improve.
+- What part of the current task is not executable.
+- The official source or project source you are adding.
+- Runnable code, tests, or failure records when possible.
+
+Contribution principles:
+
+- Do not dump links.
+- Do not add grand plans that cannot be executed.
+- Do not make role-play multi-agent the main path.
+- Prioritize project closure, tests, trace, eval, and safety boundaries.
+
+## License / 许可证
 
 MIT

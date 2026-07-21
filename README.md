@@ -57,8 +57,9 @@
 | 能力 | 说明 |
 | --- | --- |
 | 每周大纲 | 生成 Week 1-8 的中文学习计划，按 Day 1-Day 7 拆解 |
-| 每日教学 | 固定输出 5 个模块，控制在 6 小时内完成 |
+| 每日教学 | 默认输出 5 个模块，也可按用户计划保留、重命名、重排或增删 |
 | 自适应调整 | 根据 Day 学习反馈判断正常推进、放慢复习、加难扩展或重排 |
+| 代码 checkpoint 复盘 | 仅在代码完成并验证后，用真实代码与测试证据做分层复盘 |
 | 项目阶梯 | 从 `Calculator Agent` 逐步推进到 `Production-style Agent Project` |
 | Obsidian 双链 | 为核心概念、项目模块和面试表达生成稳定中文双链 |
 | 可选来源链接 | 命中关键知识点时给出官方文档、规范、论文或项目 README 链接 |
@@ -262,6 +263,7 @@ git pull --ff-only
 5. 卡住的 Bug / 报错全文：无
 6. 自我验收题完成情况：2/3
 7. 明天希望：正常推进
+8. 后续每日模块偏好（留空=默认 5 模块；或填写保留/重命名/新增/删除/顺序）：
 ```
 
 补全 Obsidian 笔记：
@@ -272,7 +274,7 @@ git pull --ff-only
 
 ## 每日输出结构
 
-每日内容只输出 5 个顶层模块：
+每日内容默认输出 5 个顶层模块：
 
 ```markdown
 📌 今日核心死磕
@@ -281,6 +283,8 @@ git pull --ff-only
 🎯 每日自我验收题
 📥 明日同步接口
 ```
+
+默认配置不会阻塞学习；用户可以在周计划或反馈模板中填写保留、重命名、新增、删除和顺序。自定义后仍需覆盖核心目标、学习路径、代码产出、验收和次日反馈。
 
 代码要求：
 
@@ -293,13 +297,14 @@ git pull --ff-only
 
 ## 工作模式
 
-这个 skill 参考 Agent Skill 的 5 种设计模式组织：
+这个 skill 使用 5 种 Agent Skill 设计模式组合出多个工作模式：
 
 | 工作模式 | 设计模式 | 用途 |
 | --- | --- | --- |
 | 每周大纲模式 | Generator + Inversion | 生成结构稳定的 Week 大纲，必要时先补问目标 |
-| 每日教学模式 | Pipeline + Generator | 严格按 5 模块生成每日任务 |
+| 每日教学模式 | Pipeline + Generator | 按用户模块配置生成每日任务，未配置时使用默认 5 模块 |
 | 周计划调整模式 | Reviewer + Pipeline | 审查反馈和项目完整度，再决定下一天任务 |
+| 代码 checkpoint 复盘模式 | Reviewer + Generator | 代码完成并验证后，用真实代码和证据做分层复盘 |
 | Obsidian 知识维护模式 | Reviewer + Generator | 按评分选择 3-5 个知识点生成笔记 |
 | 路线资料消化模式 | Tool Wrapper + Pipeline + Reviewer | 读取外部路线资料，并转成可执行学习规则 |
 
@@ -338,6 +343,7 @@ ai-agent-engineering-mentor/
     ├── weekly-outline-template.md
     ├── day1-seed.md
     ├── adaptation-policy.md
+    ├── checkpoint-review-format.md
     ├── final-project-blueprint.md
     ├── internship-success-insights.md
     ├── obsidian-linking-policy.md
@@ -355,9 +361,9 @@ ai-agent-engineering-mentor/
 
 主线关注 tool schema、permission gate、session store、context compaction、trace、eval 和 safety，而不是旧式角色扮演多 agent。
 
-### 3. 输出要能复盘
+### 3. 代码 checkpoint 要能复盘
 
-每周产出物都要逐步补齐 README、测试、trace、eval、失败记录和面试表达。
+分层复盘只在代码 checkpoint 完成并验证后触发，必须引用真实代码、测试和设计依据；每日计划和普通问答不套用该格式。
 
 ### 4. 知识库要稳定
 
@@ -456,8 +462,9 @@ The roadmap is based on and credits [datawhalechina/Agent-Learning-Hub](https://
 | Capability | What it does |
 | --- | --- |
 | Weekly outline | Generates Week 1-8 learning plans with Day 1-Day 7 breakdowns |
-| Daily teaching | Produces a fixed 5-module daily plan designed for a 6-hour study block |
+| Daily teaching | Uses a default 5-module plan, while allowing users to rename, reorder, add, remove, or combine modules |
 | Adaptive planning | Adjusts based on daily feedback: continue, slow down, extend, or reschedule |
+| Code checkpoint review | Uses real code and validation evidence for a layered review after a checkpoint is completed |
 | Project ladder | Moves from `Calculator Agent` to `Production-style Agent Project` |
 | Obsidian links | Produces stable Chinese `[[...]]` links for concepts, modules, and interview notes |
 | Optional sources | Adds official docs, specs, papers, or project README links near relevant concepts |
@@ -661,6 +668,7 @@ Submit daily feedback:
 5. 卡住的 Bug / 报错全文：无
 6. 自我验收题完成情况：2/3
 7. 明天希望：正常推进
+8. 后续每日模块偏好（留空=默认 5 模块；或填写保留/重命名/新增/删除/顺序）：
 ```
 
 Generate Obsidian notes:
@@ -671,7 +679,7 @@ Generate Obsidian notes:
 
 ## Daily output shape
 
-Daily content contains exactly 5 top-level modules:
+Daily content uses these 5 top-level modules by default:
 
 ```markdown
 📌 今日核心死磕
@@ -680,6 +688,8 @@ Daily content contains exactly 5 top-level modules:
 🎯 每日自我验收题
 📥 明日同步接口
 ```
+
+The default works without extra setup. Users may customize retained, renamed, added, removed, and reordered modules in the weekly plan or feedback form. A custom profile must still cover goals, an executable path, code output, validation, and next-day feedback.
 
 Code requirements:
 
@@ -692,13 +702,14 @@ Code requirements:
 
 ## Working modes
 
-This skill is organized around five common Agent Skill design patterns:
+This skill combines five common Agent Skill design patterns into multiple working modes:
 
 | Mode | Pattern | Purpose |
 | --- | --- | --- |
 | Weekly outline | Generator + Inversion | Generate stable weekly plans and ask for missing goals when needed |
-| Daily teaching | Pipeline + Generator | Produce a strict 5-module daily task |
+| Daily teaching | Pipeline + Generator | Follow the user's module profile, or use the default 5 modules |
 | Feedback adjustment | Reviewer + Pipeline | Review feedback and project completeness before planning the next day |
+| Code checkpoint review | Reviewer + Generator | Produce a layered review from real code and validation evidence after completion |
 | Obsidian maintenance | Reviewer + Generator | Score links and generate 3-5 focused notes |
 | Roadmap digestion | Tool Wrapper + Pipeline + Reviewer | Read external roadmaps and convert them into executable learning rules |
 
@@ -737,6 +748,7 @@ ai-agent-engineering-mentor/
     ├── weekly-outline-template.md
     ├── day1-seed.md
     ├── adaptation-policy.md
+    ├── checkpoint-review-format.md
     ├── final-project-blueprint.md
     ├── internship-success-insights.md
     ├── obsidian-linking-policy.md
@@ -754,9 +766,9 @@ Every day must end in code, a project artifact, a self-check, and feedback. Link
 
 The core line focuses on tool schema, permission gate, session store, context compaction, trace, eval, and safety instead of old role-play multi-agent patterns.
 
-### 3. Outputs must be reviewable
+### 3. Code checkpoints must be reviewable
 
-Weekly projects should gradually include README, tests, trace, eval, failure records, and interview narratives.
+The layered review format is used only after a code checkpoint has been completed and validated. It must cite real code, tests, and design evidence; daily plans and general questions do not use this format.
 
 ### 4. Knowledge links must be stable
 
